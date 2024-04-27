@@ -10,6 +10,7 @@ import androidx.core.view.isGone
 import com.example.aston_intensiv_final.databinding.FragmentBaseBinding
 import com.example.aston_intensiv_final.headlines_mvp.view.BusinessFragment
 import com.example.aston_intensiv_final.headlines_mvp.view.GeneralFragment
+import com.example.aston_intensiv_final.headlines_mvp.view.SavedFragment
 import com.example.aston_intensiv_final.headlines_mvp.view.SearchFragment
 import com.example.aston_intensiv_final.headlines_mvp.view.SourcesFragment
 import com.example.aston_intensiv_final.headlines_mvp.view.SportFragment
@@ -33,6 +34,8 @@ class BaseFragment : Fragment() {
 
                 R.id.saved -> {
                     Toast.makeText(activity, "saved", Toast.LENGTH_SHORT).show()
+                    parentFragmentManager.beginTransaction().addToBackStack(null)
+                        .replace(R.id.fragmentContainerView, SavedFragment.newInstance()).commit()
                 }
 
                 R.id.sources -> {
