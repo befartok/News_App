@@ -54,7 +54,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/thumbnail"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/monogram" />
+        app:srcCompat="@drawable/cnn_logo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

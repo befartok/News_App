@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class NewsListModel {
+class SourcesListModel {
     val TAG = "MyApp"
 
     val interceptor = HttpLoggingInterceptor()
@@ -16,7 +16,7 @@ class NewsListModel {
     val client = OkHttpClient.Builder()
         .addInterceptor(interceptor).build()
 
-    fun getAllNews(category: String): Single<NewsResponse> {
+    fun getAllSources(): Single<NewsResponse> {
 
         interceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -28,14 +28,13 @@ class NewsListModel {
 
         val apiClient: NewsApiInterface = retrofit.create(NewsApiInterface::class.java)
 
+        val allSources = apiClient.getAllSources(API_KEY)
 
-        val allNews = apiClient.getNews(category, API_KEY)
-
-        return allNews
+        return allSources
 
     }
 
-    fun getSearchNews(question: String): Single<NewsResponse> {
+    fun getSingleSources(source: String): Single<NewsResponse> {
 
         interceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -48,9 +47,9 @@ class NewsListModel {
         val apiClient: NewsApiInterface = retrofit.create(NewsApiInterface::class.java)
 
 
-        val allSearch = apiClient.getSearch(question, API_KEY)
+        val singleSources = apiClient.getSingleSources(source, API_KEY)
 
-        return allSearch
+        return singleSources
 
     }
 

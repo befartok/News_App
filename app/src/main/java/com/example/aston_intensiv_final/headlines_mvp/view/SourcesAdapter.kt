@@ -9,12 +9,12 @@ import coil.load
 import com.example.aston_intensiv_final.Logo
 import com.example.aston_intensiv_final.NewsDiffUtil
 import com.example.aston_intensiv_final.R
-import com.example.aston_intensiv_final.databinding.NewsItemBinding
+import com.example.aston_intensiv_final.databinding.SourcesItemBinding
 import com.example.aston_intensiv_final.headlines_mvp.model.NewsModel
 
-class NewsAdapter(
+class SourcesAdapter(
     private val onClickAction: (NewsModel) -> Unit,
-) : ListAdapter<NewsModel, NewsAdapter.NewsViewHolder>
+) : ListAdapter<NewsModel, SourcesAdapter.SourcesViewHolder>
     (
     AsyncDifferConfig.Builder(NewsDiffUtil).build()
 ) {
@@ -22,10 +22,10 @@ class NewsAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): NewsAdapter.NewsViewHolder {
+    ): SourcesAdapter.SourcesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = NewsItemBinding.inflate(inflater, parent, false)
-        val holder = NewsViewHolder(binding)
+        val binding = SourcesItemBinding.inflate(inflater, parent, false)
+        val holder = SourcesViewHolder(binding)
         //todo убрать деприкейтед
         clickedPosition = holder.adapterPosition
         binding.root.setOnClickListener {
@@ -37,30 +37,25 @@ class NewsAdapter(
         return holder
     }
 
-    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SourcesViewHolder, position: Int) {
         val model = getItem(position)
         holder.bind(model)
 
     }
-
-    class NewsViewHolder(private val binding: NewsItemBinding) :
+    class SourcesViewHolder(private val binding: SourcesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(model: NewsModel) {
-            binding.titleTV.text = model.title
-            binding.sourceTv.text = model.source.name
-
-            if (model.urlToImage != null) binding.newsImageView.load(model.urlToImage)
-            else binding.newsImageView.load(
-                R.drawable.no_image
-            )
-
+            val TAG = "MyApp"
+            binding.sourceTV.text = model.name
+            binding.categoryTV.text = model.category
+            binding.country.text = model.country
 
             var numberSources: Int = 0
 
-            for (sourcesName in Logo.values()) {
+            for(sourcesName in Logo.values()){
 
-                if (model.source.name == sourcesName.nameMedia) {
+                if (model.name == sourcesName.nameMedia) {
 
                     numberSources = sourcesName.number
                 }
@@ -89,7 +84,13 @@ class NewsAdapter(
                 }
 
             }
+
         }
     }
 
+
 }
+
+
+
+

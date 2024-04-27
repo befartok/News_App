@@ -1,7 +1,6 @@
 package com.example.aston_intensiv_final.headlines_mvp.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.aston_intensiv_final.CustomRecyclerAdapter
 import com.example.aston_intensiv_final.HeadlinesSingleNewsFragment
 import com.example.aston_intensiv_final.R
 import com.example.aston_intensiv_final.SingleNewsViewModel
@@ -59,7 +57,7 @@ class SportFragment : MvpAppCompatFragment(), ProfileView {
             parentFragmentManager.beginTransaction().addToBackStack(null)
                 .replace(R.id.fragmentContainerView, HeadlinesSingleNewsFragment.newInstance()).commit()
 
-            SingletonNews.addProduct(list[clickedPosition])
+            SingletonNews.addNews(list[clickedPosition])
         }
         recyclerHeadlines.adapter =adapter
         adapter.submitList(list.toMutableList())
