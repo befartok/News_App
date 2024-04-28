@@ -1,6 +1,7 @@
 package com.example.aston_intensiv_final.headlines_mvp.presenter
 
 import android.util.Log
+import androidx.fragment.app.FragmentActivity
 import com.example.aston_intensiv_final.headlines_mvp.model.NewsListModel
 import com.example.aston_intensiv_final.headlines_mvp.view.ProfileView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -16,10 +17,9 @@ class HeadlinesPresenter : MvpPresenter<ProfileView>() {
 
     fun requestDataFromServer(category: String): Disposable {
 
-
         val requestAllNews = newsListModel.getAllNews(category)
 
-        Log.i(TAG, "requestAllNews = newsListModel.getAllNews(category) = $requestAllNews");
+        Log.i(TAG, "requestAllNews = newsListModel.getAllNews(category) = $requestAllNews")
 
         return requestAllNews
             .subscribeOn(Schedulers.io())
@@ -56,6 +56,32 @@ class HeadlinesPresenter : MvpPresenter<ProfileView>() {
                 }
             )
 
+    }
+
+
+    fun requestSavedFromDB(activity: FragmentActivity?): Unit? {
+
+        val TAG = "MyApp"
+
+
+
+        val requestSaved = newsListModel.getSavedNews(activity)
+        Log.i(TAG, "requestSaved= $requestSaved")
+
+        return requestSaved
+/*            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { it ->
+                    val allSources = it.articles
+                    Log.i(TAG, "it.sources = ${it.articles}");
+
+                    viewState.addAdapter(allSources)
+                },
+                { error ->
+                    Log.e(TAG, error.toString())
+                }
+            )*/
     }
 
 

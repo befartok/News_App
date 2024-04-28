@@ -20,14 +20,15 @@ import androidx.room.ColumnInfo
 import androidx.room.PrimaryKey
 import coil.load
 import com.example.aston_intensiv_final.databinding.FragmentHeadlinesSingleNewsBinding
+import com.example.aston_intensiv_final.headlines_mvp.view.SavedFragment
 import com.example.aston_intensiv_final.headlines_mvp.view.SourcesFragment
 import kotlinx.coroutines.launch
 
 class HeadlinesSingleNewsFragment : Fragment() {
 
     private lateinit var binding: FragmentHeadlinesSingleNewsBinding
-    var termUrlString: String =""
-    var urlToImageString: String =""
+    private var urlNews: String = ""
+    private var urlImage: String = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,17 +39,17 @@ class HeadlinesSingleNewsFragment : Fragment() {
             parentFragmentManager.popBackStack()
         }
         binding.savedSmall.setOnClickListener {
-            // TODO: add saved
+
             val db = activity?.let { MainDB.getDB(it.applicationContext) }
 
             val item = Item(
                 null,
                 binding.headlineTV.text.toString(),
-                binding.imageViewSingleNews.toString(),
+                urlImage,
                 binding.dateTV.text.toString(),
                 binding.sourceTV.text.toString(),
                 binding.contentTV.text.toString(),
-                termUrlString
+                urlNews
             )
             Thread {
                 db?.getDao()?.insertItem(item)
@@ -59,9 +60,6 @@ class HeadlinesSingleNewsFragment : Fragment() {
 
         val viewModel: SingleNewsViewModel by viewModels()
 
-        /*
-                val db = activity?.let { MainDB.getDB(it.applicationContext) }
-        */
 
 
         lifecycleScope.launch {
@@ -69,10 +67,12 @@ class HeadlinesSingleNewsFragment : Fragment() {
                 viewModel.uiState.collect {
                     binding.collapsingToolbar.title = it?.title.toString()
                     binding.imageViewSingleNews.load(it?.urlToImage)
-                    urlToImageString=it?.urlToImage.toString()
                     binding.headlineTV.text = it?.title.toString()
                     binding.dateTV.text = it?.publishedAt.toString()
                     binding.sourceTV.text = it?.source?.name.toString()
+
+                    urlImage = it?.urlToImage.toString()
+                    urlNews = it?.url.toString()
 
                     val strSpannable: SpannableString
 
@@ -85,7 +85,7 @@ class HeadlinesSingleNewsFragment : Fragment() {
                             true,
                             onClickListener = {
                                 val termUrl = Uri.parse(it.url)
-                                termUrlString = termUrl.toString()
+
                                 startActivity(Intent(Intent.ACTION_VIEW, termUrl))
                             }
                         )
@@ -108,8 +108,8 @@ class HeadlinesSingleNewsFragment : Fragment() {
                 }
 
                 R.id.saved -> {
-                    Toast.makeText(activity, "saved", Toast.LENGTH_SHORT).show()
-
+                    parentFragmentManager.beginTransaction().addToBackStack(null)
+                        .replace(R.id.fragmentContainerView, SavedFragment.newInstance()).commit()
                 }
 
                 R.id.sources -> {

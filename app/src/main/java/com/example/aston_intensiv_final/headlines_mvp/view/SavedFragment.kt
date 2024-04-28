@@ -11,6 +11,7 @@ import androidx.core.view.isGone
 import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aston_intensiv_final.BaseFragment
+import com.example.aston_intensiv_final.HeadlinesSingleNewsFragment
 import com.example.aston_intensiv_final.Item
 import com.example.aston_intensiv_final.MainDB
 import com.example.aston_intensiv_final.R
@@ -18,6 +19,7 @@ import com.example.aston_intensiv_final.SingletonNews
 import com.example.aston_intensiv_final.databinding.FragmentSavedBinding
 import com.example.aston_intensiv_final.databinding.FragmentSourcesBinding
 import com.example.aston_intensiv_final.headlines_mvp.model.NewsModel
+import com.example.aston_intensiv_final.headlines_mvp.presenter.HeadlinesPresenter
 import com.example.aston_intensiv_final.headlines_mvp.presenter.SourcesPresenter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -25,9 +27,9 @@ import moxy.ktx.moxyPresenter
 
 class SavedFragment : MvpAppCompatFragment(), ProfileView {
 
-    private lateinit var adapter: SourcesAdapter
+    private lateinit var adapter: NewsAdapter
 
-    private val presenter by moxyPresenter { SourcesPresenter() }
+    private val presenter by moxyPresenter { HeadlinesPresenter() }
 
     private var clickedPosition: Int = -1
 
@@ -44,11 +46,12 @@ class SavedFragment : MvpAppCompatFragment(), ProfileView {
 
         binding = FragmentSavedBinding.inflate(inflater, container, false)
 
-        binding.recyclerSaved.layoutManager = LinearLayoutManager(activity)
+        // binding.recyclerSaved.layoutManager = LinearLayoutManager(activity)
 
-        //presenter.requestAllSourcesFromServer()
+        //presenter.requestSavedFromDB(activity)
 
         binding.searchBar.isGone = true
+
         binding.toolbar.apply {
 
             inflateMenu(R.menu.main_menu)
@@ -56,10 +59,10 @@ class SavedFragment : MvpAppCompatFragment(), ProfileView {
 
                 when (it.itemId) {
                     R.id.searchItem -> {
+
                         binding.searchBar.isGone = false
 
                         binding.toolbar.title = ""
-
                     }
 
                     R.id.filterItem -> {
@@ -92,7 +95,7 @@ class SavedFragment : MvpAppCompatFragment(), ProfileView {
                 }
 
                 R.id.saved -> {
-                    Toast.makeText(activity, "saved", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(activity, "saved", Toast.LENGTH_SHORT).show()
                 }
 
                 R.id.sources -> {
@@ -104,44 +107,45 @@ class SavedFragment : MvpAppCompatFragment(), ProfileView {
             true
         }
 
+        getSavedFromDB()
+
+
+        return binding.root
+    }
+
+    // TODO:  заполнять ресайклер из БД
+    private fun getSavedFromDB() {
         val db = activity?.let { MainDB.getDB(it.applicationContext) }
         this.activity?.let {
-            db?.getDao()?.getAllItems()?.asLiveData()?.observe(it){list->
-                binding.textView.text =""
-                list.forEach{
+            db?.getDao()?.getAllItems()?.asLiveData()?.observe(it) { list ->
+                binding.textView.text = ""
+                list.forEach {
                     val text =
-                        "id=${it.id}, title = ${it.title},urlToImage = ${it.urlToImage},publishedAt=${
-                            it.publishedAt}, sourceName = ${it.sourceName},content = ${it.content},url = ${it.url}\n"
+                        "id=${it.id}," +
+                                " title = ${it.title},urlToImage = ${it.urlToImage},publishedAt=${
+                                    it.publishedAt
+                                }, sourceName = ${it.sourceName}" +
+                                //",content = ${it.content}" +
+                                ",url = ${it.url}\n"
                     binding.textView.append(text)
                 }
             }
         }
-/*        binding.button.setOnClickListener{
-            val item = Item(null,
-                binding.editTextText1.text.toString(),
-                binding.editTextText2.text.toString(),
-                )
-            Thread{
-                db?.getDao()?.insertItem(item)
-
-            }.start()
-        }*/
-
-        return binding.root
     }
+
 
     override fun addAdapter(list: List<NewsModel>) {
 
         Log.i(TAG, "sources addAdapter = ")
 
-        adapter = SourcesAdapter { model ->
+        adapter = NewsAdapter { model ->
             clickedPosition = adapter.clickedPosition
 
             parentFragmentManager.beginTransaction().addToBackStack(null)
-                .replace(R.id.fragmentContainerView, SingleSourcesListFragment.newInstance())
+                .replace(R.id.fragmentContainerView, HeadlinesSingleNewsFragment.newInstance())
                 .commit()
 
-            SingletonNews.sendSourceName(list[clickedPosition].name)
+            SingletonNews.addNews(list[clickedPosition])
         }
         binding.recyclerSaved.adapter = adapter
         adapter.submitList(list.toMutableList())
@@ -149,4 +153,5 @@ class SavedFragment : MvpAppCompatFragment(), ProfileView {
 
     companion object {
         fun newInstance() = SavedFragment()
-    }}
+    }
+}

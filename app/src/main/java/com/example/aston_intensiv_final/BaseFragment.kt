@@ -33,7 +33,7 @@ class BaseFragment : Fragment() {
             when (it.itemId) {
 
                 R.id.saved -> {
-                    Toast.makeText(activity, "saved", Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(activity, "saved", Toast.LENGTH_SHORT).show()
                     parentFragmentManager.beginTransaction().addToBackStack(null)
                         .replace(R.id.fragmentContainerView, SavedFragment.newInstance()).commit()
                 }
@@ -71,7 +71,7 @@ class BaseFragment : Fragment() {
 
         binding.cancelIV.setOnClickListener {
 
-            Toast.makeText(activity, "cancelIV", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity, "cancelIV", Toast.LENGTH_SHORT).show()
 
             binding.searchBar.isGone = true
 
