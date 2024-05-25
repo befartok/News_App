@@ -94,13 +94,6 @@
                         android:layout_marginLeft="16dp"
                         android:src="@drawable/baseline_arrow_back_24" />
 
-                    <ImageView
-                        android:id="@+id/saved_small"
-                        android:layout_width="16dp"
-                        android:layout_height="23dp"
-                        android:layout_gravity="end"
-                        android:layout_marginRight="16dp"
-                        android:src="@drawable/saved_small" />
                 </androidx.appcompat.widget.Toolbar>
 
 
@@ -126,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Top Crypto Gainers to Watch this Week – Dogecoin, Aptos, Toncoin and New Altcoin ICOs "
+                    android:text="text"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

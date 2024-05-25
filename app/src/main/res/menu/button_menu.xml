@@ -3,15 +3,10 @@
     <item
         android:id="@+id/headlines"
         android:icon="@drawable/headlines"
-        android:title="Headlines" />
-
-    <item
-        android:id="@+id/saved"
-        android:icon="@drawable/saved"
-        android:title="Saved" />
+        android:title="@string/headlines" />
 
     <item
         android:id="@+id/sources"
         android:icon="@drawable/sources"
-        android:title="Sources" />
+        android:title="@string/sources" />
 </menu>

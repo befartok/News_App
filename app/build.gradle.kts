@@ -4,13 +4,16 @@ plugins {
     id ("kotlin-kapt")
 
 }
+kapt {
+    correctErrorTypes = true
+}
 
 android {
-    namespace = "com.example.aston_intensiv_final"
+    namespace = "com.example.newsApp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.aston_intensiv_final"
+        applicationId = "com.example.newsApp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -69,8 +72,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
 
-    implementation ("com.google.dagger:dagger:2.34")
-    annotationProcessor ("com.google.dagger:dagger-compiler:2.13")
+    implementation("com.google.dagger:dagger:2.35.1")
+    kapt("com.google.dagger:dagger-compiler:2.35.1")
 
     implementation("com.github.moxy-community:moxy:2.2.2")
     kapt ("com.github.moxy-community:moxy-compiler:2.2.2")
