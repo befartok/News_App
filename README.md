@@ -12,18 +12,23 @@
 # Новостное приложение
 
 <p align="center">
+   Отображение списка новостей в 3 категориях
 </p>
-Использованные технологии: Kotlin, Retrofit, MVP, Moxy, Android Studio.
-News_App/app/src/main/res/drawable/
 
 <p align="">
       <img src="https://github.com/befartok/News_App/blob/master/app/src/main/res/drawable/Screenshot_2024-05-27-05-55-21.png" width="300">
 </p>
 
+<p align="center">
+   Вывод списка новостных ресурсов
+</p>
 <p align="">
       <img src="https://github.com/befartok/News_App/blob/master/app/src/main/res/drawable/Screenshot_2024-05-27-05-55-51.png" width="300">
 </p>
 
+<p align="center">
+   Просмотр одной новости
+</p>
 <p align="">
       <img src="https://github.com/befartok/News_App/blob/master/app/src/main/res/drawable/Screenshot_2024-05-27-05-59-31.png" width="300">
 </p>
