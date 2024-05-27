@@ -20,7 +20,7 @@
 News_App/app/src/main/res/drawable/
 
 <p align="">
-      <img src="https://github.com/befartok/News_App/app/src/main/res/drawable/Screenshot_2024-05-27-05-55-21.png" width="700">
+      <img src="https://github.com/befartok/News_App/blob/master/app/src/main/res/drawable/Screenshot_2024-05-27-05-55-21.png" width="700">
 </p>
 
 <p align="">
