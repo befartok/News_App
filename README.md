@@ -1,8 +1,7 @@
-Новостное приложение.
-Использованные технологии: Kotlin, Retrofit, MVP, Moxy, Android Studio.
+
 
 <p align="center">
-      <img src="https://github.com/befartok/Shop/blob/master/template/images/home/image%201.png" width="200">
+   Новостное приложение
 </p>
 
 <p align="center"> 
@@ -17,12 +16,19 @@
 
 ## About
 
-Новостное приложение.
 Использованные технологии: Kotlin, Retrofit, MVP, Moxy, Android Studio.
-
+News_App/app/src/main/res/drawable/
 
 <p align="">
-      <img src="https://github.com/befartok/Shop/blob/master/template/images/screen.JPG" width="700">
+      <img src="https://github.com/befartok/News_App/app/src/main/res/drawable/Screenshot_2024-05-27-05-55-21.png" width="700">
+</p>
+
+<p align="">
+      <img src="https://github.com/befartok/News_App/app/src/main/res/drawable/Screenshot_2024-05-27-05-55-51.png" width="700">
+</p>
+
+<p align="">
+      <img src="https://github.com/befartok/News_App/app/src/main/res/drawable/Screenshot_2024-05-27-05-59-31.png" width="700">
 </p>
 
 
