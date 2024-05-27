@@ -11,7 +11,7 @@
 
 # Новостное приложение
 
-<p align="center">
+<p >
    Отображение списка новостей в 3 категориях
 </p>
 
@@ -19,14 +19,14 @@
       <img src="https://github.com/befartok/News_App/blob/master/app/src/main/res/drawable/Screenshot_2024-05-27-05-55-21.png" width="300">
 </p>
 
-<p align="center">
+<p align="">
    Вывод списка новостных ресурсов
 </p>
 <p align="">
       <img src="https://github.com/befartok/News_App/blob/master/app/src/main/res/drawable/Screenshot_2024-05-27-05-55-51.png" width="300">
 </p>
 
-<p align="center">
+<p align="">
    Просмотр одной новости
 </p>
 <p align="">
