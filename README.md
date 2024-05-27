@@ -19,12 +19,16 @@
       <img src="https://github.com/befartok/News_App/blob/master/app/src/main/res/drawable/Screenshot_2024-05-27-05-55-21.png" width="300">
 </p>
 
+
+
 <p align="">
    Вывод списка новостных ресурсов
 </p>
 <p align="">
       <img src="https://github.com/befartok/News_App/blob/master/app/src/main/res/drawable/Screenshot_2024-05-27-05-55-51.png" width="300">
 </p>
+
+
 
 <p align="">
    Просмотр одной новости
