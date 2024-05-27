@@ -1,4 +1,4 @@
-package com.example.aston_intensiv_final
+package com.example.newsApp
 
 import org.junit.Test
 

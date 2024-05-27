@@ -2,4 +2,18 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primary">#b21e35</color>
+    <color name="primary50">#85182a</color>
+
+
+    <color name="secondary">#a71e34</color>
+    <color name="tertiary">#85182a</color>
+    <color name="error">#BA1A1A</color>
+    <color name="background">#FBFCFE</color>
+    <color name="surfaceVariant">#40484B</color>
+    <color name="surface">#FF4081</color>
+
+
+    <color name="colorAccent">#FF4081</color>
+
 </resources>
